@@ -1,0 +1,55 @@
+{
+  "name": "hakan",
+  "version": "1.0.0",
+  "description": "Dev. MadzzyNetwork & xMadzzy",
+  "main": "shard.js",
+  "scripts": {
+    "start": "node shard.js"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "ascii-table": "^0.0.9",
+    "axios": "^0.23.0",
+    "canvas": "^2.8.0",
+    "canvas-constructor": "^5.0.1",
+    "chalk": "^4.1.1",
+    "common-tags": "^1.8.0",
+    "croxydb": "^0.0.7",
+    "discord-button-pages": "^1.1.9",
+    "discord-buttons": "^4.0.0",
+    "discord-logs": "^1.9.0",
+    "discord-reply": "^0.1.2",
+    "discord-rpc": "^4.0.1",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^10.0.0",
+    "i": "^0.3.7",
+    "jimp": "^0.16.1",
+    "lzma-native": "^8.0.1",
+    "minecraft-server-util": "^3.5.2",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "mongoose": "^6.0.12",
+    "node-pre-gyp": "^0.17.0",
+    "node-superfetch": "^0.2.3",
+    "npm": "^8.1.4",
+    "opusscript": "^0.0.8",
+    "path": "^0.12.7",
+    "quick.db": "^7.1.3",
+    "randomstring": "^1.2.1",
+    "simple-youtube-api": "^5.2.1",
+    "snekfetch": "^4.0.4",
+    "st.db": "^2.0.0",
+    "wio.db": "^4.0.21",
+    "ytdl-core": "^4.9.2",
+    "ytdl-core-discord": "^1.3.1"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "repository": {
+    "url": "https://discord.gg/9X9Zk48Efd"
+  },
+  "license": "MIT"
+}
