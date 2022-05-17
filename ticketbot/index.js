@@ -235,7 +235,7 @@ client.on("message", async(message) =>{
     if (cat.type !== "category") return message.channel.send("2.Olarak Katagoti İdsini Yazınız");
     await db.set(`Channels_${message.guild.id}.Log`, txt.id)
     await db.set(`Channels_${message.guild.id}.Cat`, cat.id)
-    message.react("✅")
+    message.react("?")
   }
 
   if (command == prefix + 'send' || command == prefix + 'ticket') {
@@ -248,12 +248,12 @@ client.on("message", async(message) =>{
     if (!args) args = `Talepler`
     let button7 = new disbut.MessageButton()
       .setStyle(`green`)
-      .setEmoji(`🔑`)
+      .setEmoji(`??`)
       .setLabel(`Özel Destek`)
       .setID("oyb")
     let button8 = new disbut.MessageButton()
       .setStyle(`green`)
-      .setEmoji(`🧰`)
+      .setEmoji(`??`)
       .setLabel(`Genel Destek`)
       .setID("gyb")
     let embed = new Discord.MessageEmbed()
@@ -326,12 +326,13 @@ client.on('clickButton', async (button) => {
           .setTitle("Özel Destek")
           .setFooter(`Ticket Açılma zamanı`)
           .setColor(0x5865F2)
-          .setDescription(`Destek Sizle Yakında İlgilenecektir\n
-          Eğer Bu Talepi Kapatmak İsterseniz 🔒 Emojisine Basabilirsiniz `)
+          .setDescription(`<@&898214569418305536>, <@&898214568357142548>\n
+          Destek Sizle Yakında İlgilenecektir\n
+          Eğer Bu Talepi Kapatmak İsterseniz ?? Emojisine Basabilirsiniz `)
         let idp = randomstring.generate({ length: 25 })
         let bu1tton = new disbut.MessageButton()
           .setStyle(`gray`)
-          .setEmoji(`🔒`)
+          .setEmoji(`??`)
           .setLabel(`Kapat`)
           .setID(345)
         channel.send(`Hoşgeldin <@!${button.clicker.user.id}>`, { embed: embedticket, component: bu1tton }).then(msg => {
@@ -383,13 +384,14 @@ client.on('clickButton', async (button) => {
               .setTitle("Genel Destek")
               .setFooter(`Ticket Açılma Zamanı`)
               .setColor(0x5865F2)
-              .setDescription(`Destek Sizle Yakında İlgilenecektir\n
-              Eğer Bu Talepi Kapatmak İsterseniz 🔒 Emojisine Basabilirsiniz `)
+              .setDescription(`<@&898214571364450306> \n
+              Destek Sizle Yakında İlgilenecektir\n
+              Eğer Bu Talepi Kapatmak İsterseniz ?? Emojisine Basabilirsiniz `)
             let idd = randomstring.generate({ length: 25 })
             await db.set(`close_${button.clicker.user.id}`, idd)
             let bu1tton = new disbut.MessageButton()
               .setStyle(`gray`)
-              .setEmoji(`🔒`)
+              .setEmoji(`??`)
               .setLabel(`Kapat`)
               .setID(678)
             channel.send(`Hoşgeldin <@!${button.clicker.user.id}>`, { embed: embedticket, component: bu1tton }).then(msg => {
