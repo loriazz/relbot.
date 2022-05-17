@@ -789,7 +789,7 @@ client.on("guildMemberRemove", async member => {
       msj.replace("{uye}", member).replace("{sunucu}", member.guild.name)
     );
     if (member.user.bot)
-      return canvaskanal.send(`🤖 Bu bir bot, ${member.user.tag}`);
+      return canvaskanal.send(`?? Bu bir bot, ${member.user.tag}`);
   
 });
 
@@ -850,7 +850,7 @@ client.on("guildMemberAdd", async member => {
     msj.replace("{uye}", member).replace("{sunucu}", member.guild.name)
   );
   if (member.user.bot)
-    return canvaskanal.send(`🤖 Bu bir bot, ${member.user.tag}`);
+    return canvaskanal.send(`?? Bu bir bot, ${member.user.tag}`);
 });
 
 
@@ -1431,5 +1431,54 @@ client.on('emojiCreate', async emoji => {
 
 
 //twitch post son
+
+//panel
+
+client.on('ready', async () => {
+const cdb = require("quick.db")
+    setInterval(() => {
+        client.guilds.cache.forEach(sunucu => {
+            const sunucu_panel = cdb.get(`panel.${sunucu.id}`);
+            if (!sunucu_panel) return;
+            sunucu_panel.filter(id => (id.split(" "))[1] === "v").forEach(kanal => {
+                try {
+                    const kanal_bul = sunucu.channels.cache.get((kanal.split(" "))[0]);
+                    if (!kanal_bul) return cdb.delete(`panel.${sunucu.id}`);
+                    let kanal_ayır = kanal_bul.name.split(" ");
+                    let sunucu_üyeleri;
+                    switch (kanal_ayır[0]) {
+                        case "Üye":
+                            sunucu_üyeleri = sunucu.members.cache.filter(üye => !üye.user.bot).size;
+                            break;
+                        case "Bot":
+                            sunucu_üyeleri = sunucu.members.cache.filter(üye => üye.user.bot).size;
+                            break;
+                        case "Çevrim":
+                            sunucu_üyeleri = sunucu.members.cache.filter(üye => üye.user.presence.status !== 'offline').size;
+                            break;
+                    };
+                    if (sunucu_üyeleri == undefined) return;
+                    if (sunucu_üyeleri === kanal_ayır.slice(-1)) return;
+                    kanal_ayır[kanal_ayır.length - 1] = sunucu_üyeleri;
+                    return kanal_bul.setName(kanal_ayır.join(" "), 'Sunucu üye panel sistemi').catch(() => {});
+                } catch (h) {};
+            });
+        });  
+    }, 1 );
+});
+
+//çekiliş
+
+const { GiveawaysManager } = require('discord-giveaways');
+client.giveawaysManager = new GiveawaysManager(client, {
+    storage: "./giveaways.json",
+    updateCountdownEvery: 5000,
+    default: {
+        botsCanWin: false,
+        embedColor: "#FF0000",
+        reaction: "🎉"
+    }
+});
+
 
 client.login(ayarlar.token)
