@@ -42,6 +42,7 @@
     "simple-youtube-api": "^5.2.1",
     "snekfetch": "^4.0.4",
     "st.db": "^2.0.0",
+    "speedtest-net": "^2.2.0",
     "wio.db": "^4.0.21",
     "ytdl-core": "^4.9.2",
     "ytdl-core-discord": "^1.3.1"
