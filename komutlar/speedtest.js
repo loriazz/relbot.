@@ -7,11 +7,6 @@ var speedTest = require('speedtest-net');
 exports.run = (client, message) => {
   var osType = os.type();
 
-     message.channel.send(`⏲ | İnternet Hızınız Yükleniyor, lütfen bekleyin.`).then(m => m.delete(3000));
-     message.channel.send(`⏲ | Pinginiz Hesaplanıyor, lütfen bekleyin.`).then(m => m.delete(6000));
-     message.channel.send(`⏲ | Host Aranıyor, lütfen bekleyin.`).then(m => m.delete(9000));
-     message.channel.send(`⏲ | İşletim Sistemi Hesaplanıyor, lütfen bekleyin.`).then(m => m.delete(12000));
- 
   if (osType === 'Darwin') osType = 'macOS'
   else if (osType === 'Windows') osType = 'Windows'
   else if (osType === 'Linux') osType = 'Linux'
@@ -20,15 +15,24 @@ exports.run = (client, message) => {
     var test = speedTest({maxTime: 5000});
     test.on('data', data => {
 const embed = new Discord.RichEmbed()
- .setColor('#000000')
-.setTitle('**İnternet Bilgilerin**')
-.addField(`:arrow_down: İndirme: **${data.speeds.download}**    :arrow_up: Yükleme: **${data.speeds.upload} **`)
-.addField(` :round_pushpin: Ping: **${client.ping}**`)
-.addField(`:level_slider: İşletim Sistemi: **${osType}** \n \n:desktop: İnternet Sağlayıcısı: **${data.client.isp}** \n \n:file_cabinet: Host: **${data.server.host}**`)
-
+.setColor(0x36393F)
+.setTitle('**speedtest Sonuçlar**')
+.addField('**Anlık İstatistikler**', `İndirme: **${data.speeds.download}**
+Yükleme: **${data.speeds.upload}**`)
+.addField('**Nolmal Olarak Ölçülen İstatistikler**', `İndirme: **${data.speeds.originalDownload}**
+Yükleme: **${data.speeds.originalUpload}**`)
+.addField('**Pingler**', `Discord API Pingi: **${client.ping}**
+Speedtestde Ölçülen Ping: **${data.server.ping}**`)
+.addField('**Diğer Bilgiler**', `İnternet Portunun IP'sı: **DDoS Saldırısı Olabileceğinden Dolayı Kapatılmıştır**
+İşletim Sistemi: **${osType}**
+İnternet Sağlayıcısı: **${data.client.isp}**
+Host: **${data.server.host}**
+Lokasyon: **${data.server.country}**,**${data.client.country}**
+Sağlayıcı Lokasyonu: **${data.server.location}**
+Sağlayıcı Sponsoru: **${data.server.sponsor}**`)
   message.channel.send(embed)
 });
- 
+
     test.on('error', err => {
   console.log(err);
 });
@@ -39,13 +43,12 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [],
-  permLevel: 0,
-  kategori: "sahip"
+  permLevel: 4
 };
 
 exports.help = {
-  name: 'hız-test',
-  description: 'speedtest yapar',
+  name: 'speedtest',
+  description: 'speedtest',
   usage: 'speedtest'
 };
 
